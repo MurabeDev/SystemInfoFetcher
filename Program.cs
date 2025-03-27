@@ -14,6 +14,7 @@ class Program
                     int installDateUnix = (int)installDateObj;
                     DateTime installDate = DateTimeOffset.FromUnixTimeSeconds(installDateUnix).DateTime;
                     Console.WriteLine($"Date of instalation: {installDate.Day:00}.{installDate.Month:00}.{installDate.Year}  {installDate.Hour:00}:{installDate.Minute:00}");
+                    Console.ReadLine();
                 }
                 catch (Exception ex) {
                 
