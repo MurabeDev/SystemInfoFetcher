@@ -1,1 +1,2 @@
 # SystemInfoFetcher
+Console application
