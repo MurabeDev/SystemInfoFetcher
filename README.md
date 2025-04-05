@@ -1,2 +1,2 @@
 # SystemInfoFetcher
-Console application
+Console application! Get some info about your PC
