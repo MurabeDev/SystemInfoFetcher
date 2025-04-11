@@ -13,7 +13,9 @@ class Program
                 {
                     int installDateUnix = (int)installDateObj;
                     DateTime installDate = DateTimeOffset.FromUnixTimeSeconds(installDateUnix).DateTime;
-                    Console.WriteLine($"Date of instalation: {installDate.Day:00}.{installDate.Month:00}.{installDate.Year}  {installDate.Hour:00}:{installDate.Minute:00}");
+                    Console.WriteLine($"OS installation date: {installDate.Day:00}.{installDate.Month:00}.{installDate.Year}  {installDate.Hour:00}:{installDate.Minute:00}");
+                    Console.WriteLine($"Machine name: {Environment.MachineName}\n");
+                    Console.WriteLine($"Is x64 system: {Environment.Is64BitOperatingSystem}\n");
                     Console.ReadLine();
                 }
                 catch (Exception ex) {
