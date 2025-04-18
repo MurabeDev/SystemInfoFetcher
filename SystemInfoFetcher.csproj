@@ -8,6 +8,7 @@
     <PublishAot>true</PublishAot>
     <InvariantGlobalization>true</InvariantGlobalization>
 	  <IlcUseStaticCrt>true</IlcUseStaticCrt>
+	  <PublishTrimmed>true</PublishTrimmed>
   </PropertyGroup>
 
 </Project>
