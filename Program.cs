@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System.Runtime.InteropServices;
+using System.Management;
 class Program
 {
     static List<SoftwareInfo> installedSoftware = new List<SoftwareInfo>();
@@ -33,11 +34,11 @@ class Program
             for (int i = 0; i < drives.Length; i++)
             {
                 Console.WriteLine($"{i}. Name:{drives[i].Name}");
-                Console.WriteLine($"Total size: {drives[i].TotalSize} bytes");
-                Console.WriteLine($"Free space: {drives[i].TotalFreeSpace} bytes");
-                Console.WriteLine($"Free space: {(double)drives[i].TotalFreeSpace / drives[i].TotalSize * 100:00.0} %");
-                Console.WriteLine($"Type: {drives[i].DriveType}");
-                Console.WriteLine($"Format: {drives[i].DriveFormat}");
+                Console.WriteLine($"    Total size: {drives[i].TotalSize} bytes");
+                Console.WriteLine($"    Free space: {drives[i].TotalFreeSpace} bytes");
+                Console.WriteLine($"    Free space: {(double)drives[i].TotalFreeSpace / drives[i].TotalSize * 100:00.0} %");
+                Console.WriteLine($"    Type: {drives[i].DriveType}");
+                Console.WriteLine($"    Format: {drives[i].DriveFormat}");
                 Console.WriteLine();
             }
 
@@ -46,12 +47,12 @@ class Program
             Console.WriteLine("Installed programs:\nNAME - VERSION");
             foreach (var software in installedSoftware)
             {
-                Console.WriteLine($"{software.DisplayName} - {software.DisplayVersion}");
+                Console.WriteLine($"    {software.DisplayName} - {software.DisplayVersion}");
             }
             Console.WriteLine($"\nProcessor architecture: {RuntimeInformation.ProcessArchitecture}");
             Console.WriteLine($"Current framework: {RuntimeInformation.FrameworkDescription}");
-            Console.WriteLine($"runtime identifier: {RuntimeInformation.RuntimeIdentifier}");
-            
+            Console.WriteLine($"Runtime identifier: {RuntimeInformation.RuntimeIdentifier}");
+
         }
         catch (Exception ex)
         {
