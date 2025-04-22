@@ -10,6 +10,9 @@
 	  <IlcUseStaticCrt>true</IlcUseStaticCrt>
 	  <PublishTrimmed>true</PublishTrimmed>
   </PropertyGroup>
+<PropertyGroup>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+</PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Management" Version="9.0.4" />
