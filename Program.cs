@@ -59,7 +59,8 @@ class Program
 
             Console.WriteLine($"Error during fetching data: {ex}");
         }
-
+        Console.WriteLine("\nPress ENTER to exit");
+        Console.ReadLine();
     }
    private  static List<SoftwareInfo> GetInstalledSoftware(RegistryKey registryKey, string registryPath)
     {
