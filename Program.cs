@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System.Runtime.InteropServices;
 using System.Management;
+using System;
 class Program
 {
     static List<SoftwareInfo> installedSoftware = new List<SoftwareInfo>();
@@ -23,12 +24,16 @@ class Program
             int installDateUnix = (int)installDateObj;
 
             DateTime installDate = DateTimeOffset.FromUnixTimeSeconds(installDateUnix).DateTime;
+            TimeSpan upTimeTS = TimeSpan.FromMilliseconds(Environment.TickCount64);
+
             Console.WriteLine($"OS: {Environment.OSVersion}");
             Console.WriteLine($"OS installation date: {installDate.Day:00}.{installDate.Month:00}.{installDate.Year}  {installDate.Hour:00}:{installDate.Minute:00}");
             Console.WriteLine($"Machine name: {Environment.MachineName}");
             Console.WriteLine($"User name: {Environment.UserName}");
             Console.WriteLine($"Is x64 system: {Environment.Is64BitOperatingSystem}");
             Console.WriteLine($"System directory: {Environment.SystemDirectory}");
+            Console.WriteLine($"System up time: {upTimeTS.Hours:00}:{upTimeTS.Minutes:00}:{upTimeTS.Seconds:00}");
+
             Console.WriteLine($"Drives info:\n");
             var drives = System.IO.DriveInfo.GetDrives();
             for (int i = 0; i < drives.Length; i++)
