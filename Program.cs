@@ -25,7 +25,7 @@ class Program
 
             DateTime installDate = DateTimeOffset.FromUnixTimeSeconds(installDateUnix).DateTime;
             TimeSpan upTimeTS = TimeSpan.FromMilliseconds(Environment.TickCount64);
-
+            Console.Title = "System Info Fetcher";
             Console.WriteLine($"OS: {Environment.OSVersion}");
             Console.WriteLine($"OS installation date: {installDate.Day:00}.{installDate.Month:00}.{installDate.Year}  {installDate.Hour:00}:{installDate.Minute:00}");
             Console.WriteLine($"Machine name: {Environment.MachineName}");
