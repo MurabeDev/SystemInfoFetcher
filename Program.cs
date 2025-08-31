@@ -38,13 +38,20 @@ class Program
             var drives = System.IO.DriveInfo.GetDrives();
             for (int i = 0; i < drives.Length; i++)
             {
-                Console.WriteLine($"{i}. Name:{drives[i].Name}");
-                Console.WriteLine($"    Total size: {drives[i].TotalSize} bytes");
-                Console.WriteLine($"    Free space: {drives[i].TotalFreeSpace} bytes");
-                Console.WriteLine($"    Free space: {(double)drives[i].TotalFreeSpace / drives[i].TotalSize * 100:00.0} %");
-                Console.WriteLine($"    Type: {drives[i].DriveType}");
-                Console.WriteLine($"    Format: {drives[i].DriveFormat}");
-                Console.WriteLine();
+                try
+                {
+                    Console.WriteLine($"{i}. Name: {drives[i].Name}");
+                    Console.WriteLine($"    Total size: {drives[i].TotalSize} bytes");
+                    Console.WriteLine($"    Free space: {drives[i].TotalFreeSpace} bytes");
+                    Console.WriteLine($"    Free space: {(double)drives[i].TotalFreeSpace / drives[i].TotalSize * 100:00.0} %");
+                    Console.WriteLine($"    Type: {drives[i].DriveType}");
+                    Console.WriteLine($"    Format: {drives[i].DriveFormat}");
+                    Console.WriteLine();
+                                }
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Problem with {i} drive: {e.Message}");
+                }
             }
 
             installedSoftware.AddRange(GetInstalledSoftware(Registry.LocalMachine,
