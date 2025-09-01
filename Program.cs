@@ -4,6 +4,7 @@ using System.Management;
 using System;
 class Program
 {
+
     static List<SoftwareInfo> installedSoftware = new List<SoftwareInfo>();
     static void Main()
     {
@@ -41,13 +42,13 @@ class Program
                 try
                 {
                     Console.WriteLine($"{i}. Name: {drives[i].Name}");
-                    Console.WriteLine($"    Total size: {drives[i].TotalSize} bytes");
-                    Console.WriteLine($"    Free space: {drives[i].TotalFreeSpace} bytes");
+                    Console.WriteLine($"    Total size: {Tools.GetReadableStorageSize(drives[i].TotalSize)} ({drives[i].TotalSize} bytes)");
+                    Console.WriteLine($"    Free space: {Tools.GetReadableStorageSize(drives[i].TotalFreeSpace)} ({drives[i].TotalFreeSpace} bytes)");
                     Console.WriteLine($"    Free space: {(double)drives[i].TotalFreeSpace / drives[i].TotalSize * 100:00.0} %");
                     Console.WriteLine($"    Type: {drives[i].DriveType}");
                     Console.WriteLine($"    Format: {drives[i].DriveFormat}");
                     Console.WriteLine();
-                                }
+                }
                 catch (Exception e)
                 {
                     Console.WriteLine($"Problem with {i} drive: {e.Message}");
@@ -102,7 +103,7 @@ class Program
                             }
                         }
                         catch (Exception ) { }
-                        
+
                     }
                 }
             }
@@ -110,7 +111,28 @@ class Program
         return softwares;
     }
 }
-
+public class Tools
+{
+    public static string GetReadableStorageSize(long sizeInBytes)
+    {
+        if (sizeInBytes >= 1024 && sizeInBytes < 1048576)
+        {
+            return $"{sizeInBytes / 1024} KiB";
+        }
+        else if (sizeInBytes >= 1048576 && sizeInBytes < 1073741824)
+        {
+            return $"{sizeInBytes / 1048576} MiB";
+        }
+        else if (sizeInBytes >= 1073741824 && sizeInBytes < 1099511627776)
+        {
+            return $"{sizeInBytes / 1073741824} GiB";
+        }
+        else
+        {
+            return $"{sizeInBytes} B";
+        }
+    }
+}
 class SoftwareInfo
 {
     public string DisplayName { get; set; }
