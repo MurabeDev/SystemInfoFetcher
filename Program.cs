@@ -75,7 +75,7 @@ class Program
         Console.WriteLine("\nPress ENTER to exit");
         Console.ReadLine();
     }
-   private  static List<SoftwareInfo> GetInstalledSoftware(RegistryKey registryKey, string registryPath)
+    private static List<SoftwareInfo> GetInstalledSoftware(RegistryKey registryKey, string registryPath)
     {
         List<SoftwareInfo> softwares = new List<SoftwareInfo>();
 
@@ -102,7 +102,7 @@ class Program
                                 });
                             }
                         }
-                        catch (Exception ) { }
+                        catch (Exception) { }
 
                     }
                 }
