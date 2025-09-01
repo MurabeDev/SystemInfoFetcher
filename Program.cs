@@ -43,8 +43,8 @@ class Program
                 {
                     Console.WriteLine($"{i}. Name: {drives[i].Name}");
                     Console.WriteLine($"    Total size: {Tools.GetReadableStorageSize(drives[i].TotalSize)} ({drives[i].TotalSize} bytes)");
-                    Console.WriteLine($"    Free space: {Tools.GetReadableStorageSize(drives[i].TotalFreeSpace)} ({drives[i].TotalFreeSpace} bytes)");
-                    Console.WriteLine($"    Free space: {(double)drives[i].TotalFreeSpace / drives[i].TotalSize * 100:00.0} %");
+                    Console.Write($"    Free space: {Tools.GetReadableStorageSize(drives[i].TotalFreeSpace)} ({drives[i].TotalFreeSpace} bytes)");
+                    Console.WriteLine($" {(double)drives[i].TotalFreeSpace / drives[i].TotalSize * 100:00.0} %");
                     Console.WriteLine($"    Type: {drives[i].DriveType}");
                     Console.WriteLine($"    Format: {drives[i].DriveFormat}");
                     Console.WriteLine();
