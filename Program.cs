@@ -10,19 +10,10 @@ class Program
     { 
         try
         {
-            int installDateUnix = (int)GetOSInstallDate();
-
-            DateTime installDate = DateTimeOffset.FromUnixTimeSeconds(installDateUnix).DateTime;
-            TimeSpan upTimeTS = TimeSpan.FromMilliseconds(Environment.TickCount64);
             Console.Title = "System Info Fetcher";
             Console.WriteLine("Hello! Here is your info:");
-            Console.WriteLine($"OS: {Environment.OSVersion}");
-            Console.WriteLine($"OS installation date: {installDate.Day:00}.{installDate.Month:00}.{installDate.Year}  {installDate.Hour:00}:{installDate.Minute:00}");
-            Console.WriteLine($"Machine name: {Environment.MachineName}");
-            Console.WriteLine($"User name: {Environment.UserName}");
-            Console.WriteLine($"Is x64 system: {Environment.Is64BitOperatingSystem}");
-            Console.WriteLine($"System directory: {Environment.SystemDirectory}");
-            Console.WriteLine($"System up time: {upTimeTS.Hours:00}:{upTimeTS.Minutes:00}:{upTimeTS.Seconds:00}");
+
+            WriteBasicSystemInfo();
 
             Console.WriteLine($"\n    Drives info\n");
 
@@ -33,9 +24,8 @@ class Program
             WriteInstalledSoftware(); 
 
             Console.WriteLine("\n     Runtime\n");
-            Console.WriteLine($"\nProcessor architecture: {RuntimeInformation.ProcessArchitecture}");
-            Console.WriteLine($"Current framework: {RuntimeInformation.FrameworkDescription}");
-            Console.WriteLine($"Runtime identifier: {RuntimeInformation.RuntimeIdentifier}");
+
+            WriteRuntimeInfo();
 
         }
         catch (Exception ex)
@@ -103,6 +93,22 @@ class Program
         return installDateObj;
     }
 
+    private static void WriteBasicSystemInfo()
+    {
+        int installDateUnix = (int)GetOSInstallDate();
+
+        DateTime installDate = DateTimeOffset.FromUnixTimeSeconds(installDateUnix).DateTime;
+        TimeSpan upTimeTS = TimeSpan.FromMilliseconds(Environment.TickCount64);
+
+        Console.WriteLine($"OS: {Environment.OSVersion}");
+        Console.WriteLine($"OS installation date: {installDate.Day:00}.{installDate.Month:00}.{installDate.Year}  {installDate.Hour:00}:{installDate.Minute:00}");
+        Console.WriteLine($"Machine name: {Environment.MachineName}");
+        Console.WriteLine($"User name: {Environment.UserName}");
+        Console.WriteLine($"Is x64 system: {Environment.Is64BitOperatingSystem}");
+        Console.WriteLine($"System directory: {Environment.SystemDirectory}");
+        Console.WriteLine($"System up time: {upTimeTS.Hours:00}:{upTimeTS.Minutes:00}:{upTimeTS.Seconds:00}");
+    }
+
     private static void WriteDrivesInfo()
     {
         var drives = System.IO.DriveInfo.GetDrives();
@@ -133,6 +139,15 @@ class Program
         {
             Console.WriteLine($"    {software.DisplayName} - {software.DisplayVersion}");
         }
+    }
+
+    private static void WriteRuntimeInfo()
+    {
+
+        Console.WriteLine($"Processor architecture: {RuntimeInformation.ProcessArchitecture}");
+        Console.WriteLine($"Current framework: {RuntimeInformation.FrameworkDescription}");
+        Console.WriteLine($"Runtime identifier: {RuntimeInformation.RuntimeIdentifier}");
+
     }
 }
 public class Tools
