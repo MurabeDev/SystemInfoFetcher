@@ -15,6 +15,7 @@ class Program
             DateTime installDate = DateTimeOffset.FromUnixTimeSeconds(installDateUnix).DateTime;
             TimeSpan upTimeTS = TimeSpan.FromMilliseconds(Environment.TickCount64);
             Console.Title = "System Info Fetcher";
+            Console.WriteLine("Hello! Here is your info:");
             Console.WriteLine($"OS: {Environment.OSVersion}");
             Console.WriteLine($"OS installation date: {installDate.Day:00}.{installDate.Month:00}.{installDate.Year}  {installDate.Hour:00}:{installDate.Minute:00}");
             Console.WriteLine($"Machine name: {Environment.MachineName}");
@@ -23,12 +24,15 @@ class Program
             Console.WriteLine($"System directory: {Environment.SystemDirectory}");
             Console.WriteLine($"System up time: {upTimeTS.Hours:00}:{upTimeTS.Minutes:00}:{upTimeTS.Seconds:00}");
 
-            Console.WriteLine($"Drives info:\n");
+            Console.WriteLine($"\n    Drives info\n");
 
             WriteDrivesInfo();
 
-            WriteInstalledSoftware();
+            Console.WriteLine("\n     Installed programs (NAME - VERSION)\n");
 
+            WriteInstalledSoftware(); 
+
+            Console.WriteLine("\n     Runtime\n");
             Console.WriteLine($"\nProcessor architecture: {RuntimeInformation.ProcessArchitecture}");
             Console.WriteLine($"Current framework: {RuntimeInformation.FrameworkDescription}");
             Console.WriteLine($"Runtime identifier: {RuntimeInformation.RuntimeIdentifier}");
@@ -125,7 +129,6 @@ class Program
     {
         installedSoftware.AddRange(GetInstalledSoftwareList(Registry.LocalMachine,
     @"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall"));
-        Console.WriteLine("Installed programs:\nNAME - VERSION");
         foreach (var software in installedSoftware)
         {
             Console.WriteLine($"    {software.DisplayName} - {software.DisplayVersion}");
